@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life Tracker AI</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="kicker">Local Portfolio App</p>
+          <h1>Life Tracker AI</h1>
+        </div>
+        <a href="./legacy/terminal-life-tracker-dashboard.html">Legacy tracker</a>
+      </header>
+
+      <section class="workspace" aria-label="Life Tracker AI workspace">
+        <form id="plannerForm" class="panel planner-panel">
+          <div class="field-row">
+            <label>
+              Area
+              <select name="area" required>
+                <option>Health</option>
+                <option>Work</option>
+                <option>Mind</option>
+                <option>Life</option>
+              </select>
+            </label>
+            <label>
+              Recent check-in
+              <input name="checkin" maxlength="700" placeholder="ex. Slept 6h, low focus, still want a gym win" />
+            </label>
+          </div>
+
+          <label>
+            Goal
+            <textarea name="goal" required minlength="8" maxlength="900" placeholder="What do you want the tracker to help with today?"></textarea>
+          </label>
+
+          <label>
+            Constraints
+            <textarea name="constraints" maxlength="700" placeholder="Time, energy, equipment, deadlines, budget, or anything the AI should respect"></textarea>
+          </label>
+
+          <div class="controls">
+            <button id="submitButton" type="submit">Generate Plan</button>
+            <button id="clearButton" type="button">Clear Chat</button>
+          </div>
+          <p id="formError" class="error" role="alert"></p>
+        </form>
+
+        <section class="panel output-panel" aria-live="polite">
+          <div class="output-head">
+            <div>
+              <p class="kicker">AI Output</p>
+              <h2>Next actions</h2>
+            </div>
+            <div id="qualityBadge" class="quality">Ready</div>
+          </div>
+
+          <div id="loading" class="loading" hidden>
+            <span></span>
+            <p>Thinking through the tracker context...</p>
+          </div>
+
+          <div id="output" class="output empty">
+            Add a goal and generate a plan. Follow-up messages stay in local browser memory for this session only.
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

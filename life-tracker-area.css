@@ -1,0 +1,435 @@
+:root {
+  color-scheme: dark;
+  --cave-900: #080706;
+  --cave-800: #100d0b;
+  --cave-700: #191410;
+  --cave-600: #241c16;
+  --stone: #3a3128;
+  --torch: #f2a23a;
+  --torch-bright: #ffd18a;
+  --ember: #d95625;
+  --moss: #7a8f63;
+  --text: #f4eadb;
+  --muted: #bba994;
+  --dim: #766858;
+  --line: rgba(244, 234, 219, 0.13);
+  --line-strong: rgba(242, 162, 58, 0.38);
+  --panel: rgba(18, 14, 11, 0.84);
+  --panel-raised: rgba(29, 23, 18, 0.9);
+  --shadow: 0 28px 80px rgba(0, 0, 0, 0.56);
+  font-family:
+    "Courier New", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(242, 162, 58, 0.28), transparent 16rem),
+    radial-gradient(circle at 86% 12%, rgba(217, 86, 37, 0.14), transparent 14rem),
+    linear-gradient(180deg, #060504 0%, #100c09 48%, #070605 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.58;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  width: min(1080px, calc(100vw - 28px));
+  margin: 18px auto 42px;
+}
+
+.topbar,
+.panel,
+.page-hero,
+.empty-cell,
+.editable-card,
+.sleep-score-card,
+.progress-card {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(244, 234, 219, 0.12);
+  background: rgba(5, 4, 3, 0.72);
+  color: var(--text);
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--line-strong);
+  box-shadow: 0 0 0 3px rgba(242, 162, 58, 0.12);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px;
+  background: rgba(9, 7, 6, 0.72);
+}
+
+.back-link {
+  color: var(--torch-bright);
+  text-decoration: none;
+  border: 1px solid var(--line-strong);
+  padding: 9px 11px;
+  background: rgba(242, 162, 58, 0.08);
+}
+
+.back-link:focus,
+.back-link:hover {
+  outline: none;
+  background: rgba(242, 162, 58, 0.16);
+}
+
+.topbar span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.page-hero {
+  position: relative;
+  margin-top: 14px;
+  min-height: 250px;
+  padding: clamp(18px, 4vw, 36px);
+  overflow: hidden;
+}
+
+.page-hero::after {
+  content: "";
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  width: min(40vw, 220px);
+  aspect-ratio: 1.25;
+  background:
+    linear-gradient(#2a211a 0 18px, transparent 18px),
+    linear-gradient(90deg, #1b1511 0 18px, #2d241c 18px 36px, #15110e 36px 54px, transparent 54px),
+    linear-gradient(#15110e, #0b0908);
+  background-size: 100% 44px, 72px 100%, 100% 100%;
+  border: 1px solid rgba(255, 209, 138, 0.12);
+  opacity: 0.56;
+  image-rendering: pixelated;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  position: relative;
+  z-index: 1;
+  max-width: 10ch;
+  margin: 0;
+  font-size: clamp(2.7rem, 8vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: 0;
+}
+
+.page-hero p:last-child {
+  position: relative;
+  z-index: 1;
+  max-width: 58ch;
+  margin: 18px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.65fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.panel {
+  padding: 16px;
+  background: rgba(18, 14, 11, 0.78);
+}
+
+.panel h2 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+  font-size: 0.84rem;
+}
+
+.empty-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.empty-cell {
+  min-height: 132px;
+  padding: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 209, 138, 0.06), transparent 44%),
+    rgba(16, 12, 10, 0.82);
+}
+
+.empty-cell span {
+  display: block;
+  color: var(--dim);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.empty-cell strong {
+  display: block;
+  margin-top: 12px;
+  color: var(--torch-bright);
+  font-size: 1.05rem;
+}
+
+.health-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.health-stack,
+.health-side {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.editable-card,
+.sleep-score-card,
+.progress-card {
+  padding: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 209, 138, 0.06), transparent 44%),
+    rgba(16, 12, 10, 0.82);
+}
+
+.editable-card {
+  min-height: 210px;
+}
+
+.card-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.card-head span,
+.sleep-label,
+.progress-label {
+  display: block;
+  color: var(--dim);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.card-head h3,
+.sleep-score-card h3,
+.progress-card h3 {
+  margin: 5px 0 0;
+  color: var(--torch-bright);
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.pixel-chip {
+  flex: 0 0 auto;
+  padding: 6px 8px;
+  border: 1px solid var(--line-strong);
+  color: var(--torch-bright);
+  background: rgba(242, 162, 58, 0.08);
+  font-size: 0.72rem;
+}
+
+.tracker-fields {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+  gap: 10px;
+}
+
+.tracker-fields label,
+.tracker-notes label,
+.progress-control label {
+  display: grid;
+  gap: 7px;
+  color: var(--dim);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.tracker-fields input {
+  min-height: 42px;
+  padding: 10px 11px;
+}
+
+.tracker-notes {
+  margin-top: 10px;
+}
+
+.tracker-notes textarea {
+  min-height: 82px;
+  padding: 10px 11px;
+  resize: vertical;
+}
+
+.sleep-score-card {
+  min-height: 238px;
+}
+
+.sleep-display {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  gap: 12px;
+  margin: 18px 0 14px;
+}
+
+.sleep-number {
+  color: var(--torch-bright);
+  font-size: clamp(3.4rem, 9vw, 6rem);
+  line-height: 0.82;
+}
+
+.sleep-unit {
+  color: var(--dim);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.sleep-meter {
+  width: 100%;
+  height: 22px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(90deg, rgba(242, 162, 58, 0.16) 50%, transparent 50%),
+    rgba(5, 4, 3, 0.76);
+  background-size: 18px 100%, 100% 100%;
+  overflow: hidden;
+}
+
+.sleep-meter-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--ember), var(--torch), var(--torch-bright));
+  box-shadow: 0 0 22px rgba(242, 162, 58, 0.34);
+}
+
+.sleep-score-card p {
+  color: var(--muted);
+}
+
+.progress-card {
+  min-height: 230px;
+}
+
+.progress-top {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.progress-percent {
+  color: var(--torch-bright);
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 0.9;
+}
+
+.pixel-progress {
+  position: relative;
+  height: 34px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    rgba(5, 4, 3, 0.76);
+  background-size: 18px 100%, 100% 100%;
+  overflow: hidden;
+}
+
+.pixel-progress-fill {
+  height: 100%;
+  width: 0%;
+  background:
+    linear-gradient(90deg, rgba(217, 86, 37, 0.94), rgba(242, 162, 58, 0.94)),
+    repeating-linear-gradient(90deg, transparent 0 14px, rgba(255, 209, 138, 0.24) 14px 18px);
+  box-shadow: 0 0 24px rgba(242, 162, 58, 0.3);
+}
+
+.progress-control {
+  margin-top: 14px;
+}
+
+.progress-control input[type="range"] {
+  height: 34px;
+  padding: 0;
+  accent-color: var(--torch);
+}
+
+.note {
+  margin-top: 14px;
+  color: var(--dim);
+  font-size: 0.76rem;
+}
+
+@media (max-width: 760px) {
+  .layout,
+  .empty-grid,
+  .health-grid,
+  .tracker-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .page-hero::after {
+    opacity: 0.24;
+  }
+}

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health | Life Tracker</title>
+    <link rel="stylesheet" href="./life-tracker-area.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="back-link" href="./terminal-life-tracker-dashboard.html">Back to Base Camp</a>
+        <span>Health block page</span>
+      </header>
+
+      <section class="page-hero">
+        <p class="kicker">Core Area</p>
+        <h1>Health</h1>
+        <p>This page is isolated from the homepage so the health tracker can be shaped on its own.</p>
+      </section>
+
+      <section class="layout">
+        <article class="panel">
+          <h2>Build Space</h2>
+          <p>Track the daily health inputs first. Sleep and daily completion can become app-connected later.</p>
+
+          <div class="health-grid">
+            <div class="health-stack">
+              <section class="editable-card" aria-labelledby="calorieTitle">
+                <div class="card-head">
+                  <div>
+                    <span>Food Log</span>
+                    <h3 id="calorieTitle">Calorie Intake</h3>
+                  </div>
+                  <div class="pixel-chip">Editable</div>
+                </div>
+
+                <div class="tracker-fields">
+                  <label>
+                    Target
+                    <input type="number" min="0" placeholder="ex. 2400" aria-label="Calorie target" />
+                  </label>
+                  <label>
+                    Today
+                    <input type="number" min="0" placeholder="ex. 1850" aria-label="Calories consumed today" />
+                  </label>
+                </div>
+
+                <div class="tracker-notes">
+                  <label>
+                    Notes
+                    <textarea placeholder="Meals, macros, appetite, meal prep notes..."></textarea>
+                  </label>
+                </div>
+              </section>
+
+              <section class="editable-card" aria-labelledby="strengthTitle">
+                <div class="card-head">
+                  <div>
+                    <span>Training Log</span>
+                    <h3 id="strengthTitle">Strength Training</h3>
+                  </div>
+                  <div class="pixel-chip">Editable</div>
+                </div>
+
+                <div class="tracker-fields">
+                  <label>
+                    Session
+                    <input type="text" placeholder="ex. Push / Pull / Legs" aria-label="Strength training session" />
+                  </label>
+                  <label>
+                    Duration
+                    <input type="text" placeholder="ex. 60 min" aria-label="Strength training duration" />
+                  </label>
+                </div>
+
+                <div class="tracker-notes">
+                  <label>
+                    Notes
+                    <textarea placeholder="Lifts, sets, soreness, wins, what to adjust next..."></textarea>
+                  </label>
+                </div>
+              </section>
+            </div>
+
+            <div class="health-side">
+              <section class="sleep-score-card" aria-labelledby="sleepTitle">
+                <span class="sleep-label">Future App Sync</span>
+                <h3 id="sleepTitle">Sleep Score</h3>
+                <div class="sleep-display">
+                  <div class="sleep-number">--</div>
+                  <div class="sleep-unit">score pending</div>
+                </div>
+                <div class="sleep-meter" aria-label="Sleep score meter">
+                  <div class="sleep-meter-fill"></div>
+                </div>
+                <p>Reserved for a future connection to your sleep data source.</p>
+              </section>
+
+              <section class="progress-card" aria-labelledby="dailyProgressTitle">
+                <div class="progress-top">
+                  <div>
+                    <span class="progress-label">Daily Goals</span>
+                    <h3 id="dailyProgressTitle">Progress</h3>
+                  </div>
+                  <div class="progress-percent" id="dailyProgressValue">0%</div>
+                </div>
+                <div class="pixel-progress" aria-label="Daily goal progress">
+                  <div class="pixel-progress-fill" id="dailyProgressFill"></div>
+                </div>
+                <div class="progress-control">
+                  <label>
+                    Manual Progress
+                    <input id="dailyProgressInput" type="range" min="0" max="100" value="0" />
+                  </label>
+                </div>
+              </section>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <p class="note">Local editable page: health.</p>
+    </main>
+    <script>
+      const progressInput = document.querySelector("#dailyProgressInput");
+      const progressFill = document.querySelector("#dailyProgressFill");
+      const progressValue = document.querySelector("#dailyProgressValue");
+
+      function updateProgress() {
+        const value = progressInput.value;
+        progressFill.style.width = `${value}%`;
+        progressValue.textContent = `${value}%`;
+      }
+
+      progressInput.addEventListener("input", updateProgress);
+      updateProgress();
+    </script>
+  </body>
+</html>
